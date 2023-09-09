@@ -10,7 +10,7 @@ using namespace std;
 int main()
 {
     //RomanValues
-    constexpr int I_Value = 1;                  //Constant separately outside of while loop
+    constexpr int I_Value = 1;               
     constexpr int V_Value = 5;                      
     constexpr int X_Value = 10;
     constexpr int L_Value = 50;
@@ -18,26 +18,17 @@ int main()
     constexpr int D_Value = 500;
     constexpr int M_Value = 1000;
 
-
-    string InputRomanText;              //TODO Put everything for while loop - Condition should be Inputed Roman text
+    while (true)
+    {
+    string InputRomanText;         
     int IntegerTotal = 0;
     char LastCharacter = 0;
 
     cout << "Enter Roman Number, please. \n ";
 
-    getline(cin, InputRomanText);       //Better for text inputs than cin
-
-
-    vector<char> CharactersArray; // dynamic array type 
-    CharactersArray.reserve(InputRomanText.size()); //When creating vector, you should reserve amount of memory it is supposed to use.
-
-    for (const char ch : InputRomanText) // Here I am separating InputRomanText string to characters and storing them
-    {
-        CharactersArray.push_back(ch); //This adds one element to array
-    }
+    getline(cin, InputRomanText);  
     
-    
-    for (const char ch : CharactersArray) 
+    for (const char ch : InputRomanText)
     {
       switch (ch)            
         {
@@ -142,7 +133,9 @@ int main()
     }
 
         cout << "Total number of characters is: " << IntegerTotal << "\n";
+   }
 
+   return 0;
 
  }
 

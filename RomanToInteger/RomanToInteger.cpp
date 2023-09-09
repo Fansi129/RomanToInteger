@@ -6,7 +6,7 @@
 #include <vector>
 
 using namespace std;
-                                                //If you can make something constant, make it constant. Constantst should be CAPITALAZIED
+                                               
 int main()
 {
     //RomanValues
@@ -25,10 +25,10 @@ int main()
 
     cout << "Enter Roman Number, please. \n ";
 
-    getline(cin, InputRomanText);       //Better for text inputs
+    getline(cin, InputRomanText);       //Better for text inputs than cin
 
 
-    vector<char> CharactersArray; // dynamic array type apparently 
+    vector<char> CharactersArray; // dynamic array type 
     CharactersArray.reserve(InputRomanText.size()); //When creating vector, you should reserve amount of memory it is supposed to use.
 
     for (const char ch : InputRomanText) // Here I am separating InputRomanText string to characters and storing them
@@ -43,7 +43,6 @@ int main()
         {
             case 'I':
                 IntegerTotal += I_Value;
-                LastCharacter = ch;
                 break;
 
             case 'V':
@@ -51,13 +50,11 @@ int main()
                 {
                     IntegerTotal += V_Value;
                     IntegerTotal -= 2*I_Value;
-                    LastCharacter = ch;             //TODO Move after switch statement
                     break;
                 }
                 else
                 {
                     IntegerTotal += V_Value;
-                    LastCharacter = ch;
                     break;
                 }
 
@@ -66,20 +63,17 @@ int main()
                 {
                     IntegerTotal += X_Value;
                     IntegerTotal -= 2 * V_Value;
-                    LastCharacter = ch;
                     break;
                 }
                 else if (LastCharacter == 'I')
                 {
                     IntegerTotal += X_Value;
                     IntegerTotal -= 2 * I_Value;
-                    LastCharacter = ch;
                     break;
                 }
                 else
                 {
                     IntegerTotal += X_Value;
-                    LastCharacter = ch;
                     break;
                 }
 
@@ -88,39 +82,66 @@ int main()
                 {
                     IntegerTotal += L_Value;
                     IntegerTotal -= 2 * X_Value;
-                    LastCharacter = ch;
                     break;
                 }
                 else
                 {
                     IntegerTotal += L_Value;
-                    LastCharacter = ch;
+                    break;
+                }
+            case 'C':
+                if (LastCharacter == 'L')
+                {
+                    IntegerTotal += C_Value;
+                    IntegerTotal -= 2 * L_Value;
+                    break;
+                }
+                else if (LastCharacter == 'X')
+                {
+                    IntegerTotal += C_Value;
+                    IntegerTotal -= 2 * X_Value;
+                    break;
+                }
+                else
+                {
+                    IntegerTotal += C_Value;
                     break;
                 }
 
-            case 'C':                               //TODO Add values here
-                IntegerTotal += C_Value;
-                break;
-
             case 'D':
-                IntegerTotal += D_Value;
-                break;
+                if (LastCharacter == 'C')
+                {
+                    IntegerTotal += D_Value;
+                    IntegerTotal -= 2 * C_Value;
+                    break;
+                }
+                else
+                {
+                    IntegerTotal += D_Value;
+                    break;
+                }
 
             case 'M':
-                IntegerTotal += M_Value;
-                break;                  
+                if (LastCharacter == 'D')
+                {
+                    IntegerTotal += M_Value;
+                    IntegerTotal -= 2 * D_Value;
+                    break;
+                }
+                else
+                {
+                    IntegerTotal += M_Value;
+                    break;
+                }
+
 
             default:
                 break;
-        }                        
+        }         
+      LastCharacter = ch;
     }
-                                     //TODO Look into functions, parse/find in string 
-                                   //TODO   Mesure performance by start and end time library "chrono"
-                                    //TODO  Scanning paterns - study ->Probably bad performance
 
         cout << "Total number of characters is: " << IntegerTotal << "\n";
-
-        main();     //BAD 
 
 
  }
